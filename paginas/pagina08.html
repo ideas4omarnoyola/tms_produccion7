@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 08</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="fondo" src="../img/pagina08/fondo.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="instrucciones" src="../img/pagina08/instrucciones.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos botones" id="boton" src="../img/pagina08/boton.png" data-posX="317" data-posY="334" alt="">
+    <img class="elementos" id="info1" src="../img/pagina08/info1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info2" src="../img/pagina08/info2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info3" src="../img/pagina08/info3.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="info4" src="../img/pagina08/info4.png" data-posX="0" data-posY="0" alt="">
+
+
+
+
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const fondo = $('#fondo');
+        const instrucciones = $('#instrucciones');
+
+        const boton = $('#boton');
+        const info1 = $('#info1');
+        const info2 = $('#info2');
+        const info3 = $('#info3');
+        const info4 = $('#info4');
+
+
+
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/TMS_OEA_M6_08_1.mp3'),
+            new Audio('../audios/TMS_OEA_M6_08_2.mp3'),
+            new Audio('../audios/TMS_OEA_M6_08_3.mp3'),
+            new Audio('../audios/TMS_OEA_M6_08_5.mp3'),
+            new Audio('../audios/TMS_OEA_M6_08_6.mp3'),
+            new Audio('../audios/TMS_OEA_M6_08_4.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], dialogo, 1);
+            animacionEntrada(fondo, 'default', 1, 1);
+        }
+
+        function dialogo() {  
+            aplicacion.reproducirAudio(audio[1], botonera, 1);
+            animacionEntrada(instrucciones, 'derecha-izquierda', 1);
+            animacionEntrada(boton, 'arriba-abajo', 1, 1);
+        }
+
+        
+        function botonera(){
+            parpadear(boton);
+        }
+
+        function visualizarInfo1(){
+            aplicacion.reproducirAudio(audio[2], visualizarInfo2, 1);
+            animacionEntrada(info1, 'default', 1);
+        }
+        function visualizarInfo2(){
+            aplicacion.reproducirAudio(audio[3], visualizarInfo3, 1);
+            animacionEntrada(info2, 'default', 1);
+        }
+        function visualizarInfo3(){
+            aplicacion.reproducirAudio(audio[4], visualizarInfo4, 1);
+            animacionEntrada(info3, 'default', 1);
+        }
+        function visualizarInfo4(){
+            aplicacion.reproducirAudio(audio[5], finalPagina, 1);
+            animacionEntrada(info4, 'default', 1);
+        }
+
+        function finalPagina(){
+            aplicacion.terminaPantalla();
+        }
+
+        boton.click(function(){
+            if(boton.css('cursor') == 'pointer'){
+                dejarParpadear(boton);
+                visualizarInfo1();
+            }
+        });
+
+
+
+    </script>
+</body>
+</html>

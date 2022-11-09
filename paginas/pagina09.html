@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 09</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/jquery-ui.min.js"></script>
+    <script src="../js/librerias/jquery.ui.touch-punch.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<style>
+    .pointer{
+        cursor: pointer;
+    }
+</style>
+<body class="pagina">
+    <img class="elementos" id="fondoComenzar" src="../img/pagina09/fondoComenzar.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="btnComenzar" src="../img/pagina09/btnComenzar.png" data-posX="517" data-posY="435" alt="">
+
+    <img class="elementos" id="fondoEjercicio1" src="../img/pagina09/fondoEjercicio1.png" data-posX="0" data-posY="0" alt="">
+    
+    <div class="elementos drop" id="drop4" data-id="4" data-posX="630" data-posY="134" style="width:345px;  height:67px;"></div>
+    <div class="elementos drop" id="drop3" data-id="3" data-posX="630" data-posY="219" style="width:345px;  height:67px;"></div>
+    <div class="elementos drop" id="drop2" data-id="2" data-posX="630" data-posY="308" style="width:345px;  height:67px;"></div>
+    <div class="elementos drop" id="drop1" data-id="1" data-posX="630" data-posY="395" style="width:345px;  height:67px;"></div>
+
+    <img class="elementos drag" id="drag1" data-id="1" src="../img/pagina09/drag1.png" data-posX="244" data-posY="202" alt="">
+    <img class="elementos drag" id="drag2" data-id="2" src="../img/pagina09/drag2.png" data-posX="244" data-posY="256" alt="">
+    <img class="elementos drag" id="drag3" data-id="3" src="../img/pagina09/drag3.png" data-posX="244" data-posY="311" alt="">
+    <img class="elementos drag" id="drag4" data-id="4" src="../img/pagina09/drag4.png" data-posX="244" data-posY="367" alt="">
+
+    <img class="elementos" id="fondoEjercicio2" src="../img/pagina09/fondoEjercicio2.png" data-posX="0" data-posY="0" alt="">
+
+    <img class="elementos" id="pregunta1" src="../img/pagina09/pregunta1.png" data-posX="128" data-posY="116" alt="">
+    <img class="elementos pointer" id="verdadero1" src="../img/pagina09/verdadero1.png" data-posX="286" data-posY="325" alt="">
+    <img class="elementos pointer" id="falso1" src="../img/pagina09/falso1.png" data-posX="539" data-posY="326" alt="">
+    
+    <img class="elementos" id="pregunta2" src="../img/pagina09/pregunta2.png" data-posX="128" data-posY="116" alt="">
+    <img class="elementos pointer" id="verdadero2" src="../img/pagina09/verdadero2.png" data-posX="286" data-posY="325" alt="">
+    <img class="elementos pointer" id="falso2" src="../img/pagina09/falso2.png" data-posX="539" data-posY="326" alt="">
+   
+    <img class="elementos" id="pregunta3" src="../img/pagina09/pregunta3.png" data-posX="180" data-posY="116" alt="">
+    <img class="elementos pointer" id="verdadero3" src="../img/pagina09/verdadero3.png" data-posX="286" data-posY="325" alt="">
+    <img class="elementos pointer" id="falso3" src="../img/pagina09/falso3.png" data-posX="539" data-posY="326" alt="">
+    
+    <img class="elementos" id="pregunta4" src="../img/pagina09/pregunta4.png" data-posX="200" data-posY="116" alt="">
+    <img class="elementos pointer" id="verdadero4" src="../img/pagina09/verdadero4.png" data-posX="286" data-posY="325" alt="">
+    <img class="elementos pointer" id="falso4" src="../img/pagina09/falso4.png" data-posX="539" data-posY="326" alt="">
+
+    <img class="elementos" id="retroBuena" src="../img/pagina09/retroBuena.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="retroMala" src="../img/pagina09/retroMala.png" data-posX="0" data-posY="0"/>
+    <img class="elementos" id="btnReiniciar" src="../img/pagina09/btnReiniciar.png" data-posX="650" data-posY="423"/>
+    <p class="elementos" id="calificacion" style="color: white;"></p>
+
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const fondoComenzar = $('#fondoComenzar');
+        const btnComenzar = $('#btnComenzar');
+
+        const fondoEjercicio1 = $('#fondoEjercicio1');
+        const drag1 = $('#drag1');
+        const drag2 = $('#drag2');
+        const drag3 = $('#drag3');
+        const drag4 = $('#drag4');
+
+        const drop1 = $('#drop1');
+        const drop2 = $('#drop2');
+        const drop3 = $('#drop3');
+        const drop4 = $('#drop4');
+
+        const fondoEjercicio2 = $('#fondoEjercicio2');
+
+        const pregunta1 = $('#pregunta1');
+        const pregunta2 = $('#pregunta2');
+        const pregunta3 = $('#pregunta3');
+        const pregunta4 = $('#pregunta4');
+
+        const verdadero1 = $('#verdadero1');
+        const verdadero2 = $('#verdadero2');
+        const verdadero3 = $('#verdadero3');
+        const verdadero4 = $('#verdadero4');
+
+        const falso1 = $('#falso1');
+        const falso2 = $('#falso2');
+        const falso3 = $('#falso3');
+        const falso4 = $('#falso4');
+
+        const retroBuena = $('#retroBuena');
+        const retroMala = $('#retroMala');
+        const btnReiniciar = $('#btnReiniciar');
+
+        let dragSelect;
+        let dropCorrespondiente;
+        let dragColocados = 0;
+        let puntos = 0;
+        let aciertos = 0;
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/TMS_OEA_M6_09_1.mp3'),
+            new Audio('../audios/TMS_OEA_M6_09_2.mp3'),
+            new Audio('../audios/TMS_OEA_M6_09_3.mp3'),
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], clickComenzar, 1);
+            animacionEntrada(fondoComenzar, 'default', 1);
+        }
+        
+        function clickComenzar(){
+            parpadear(btnComenzar);
+        }
+
+        function ejercicio1(){
+            animacionEntrada(fondoEjercicio1, 'default', 1);
+            animacionEntrada(drop1, 'default', 1, 1);
+            animacionEntrada(drop2, 'default', 1, 1);
+            animacionEntrada(drop3, 'default', 1, 1);
+            animacionEntrada(drop4, 'default', 1, 1);
+
+            animacionEntrada(drag1, 'default', 1, 1);
+            animacionEntrada(drag2, 'default', 1, 1.5);
+            animacionEntrada(drag3, 'default', 1, 2);
+            animacionEntrada(drag4, 'default', 1, 2.5);
+
+            dragAndDrop();
+        }
+
+        function dragAndDrop(){
+            const elementosDrag = $('.drag');
+            const elementosDrop = $('.drop');
+
+            elementosDrag.draggable({
+                revert: true,
+                start: function (event, ui) {
+                    dragSelect = $(this).data('id');
+                }
+            });
+
+            elementosDrop.droppable({
+                accept: ".drag",
+                tolerance: "intersect",
+                drop: function (event, ui) {
+                    dropCorrespondiente = $(this).data('id');
+                    verificarLugar();
+                }
+            });
+        }
+
+        function verificarLugar(){
+            let dragActivo = $(`#drag${dragSelect}`);
+            let dropActivo = $(`#drop${dropCorrespondiente}`);
+
+            const dropTop = dropActivo.css('top');
+            const dropLeft = dropActivo.css('left');
+
+            dragActivo.css({
+                'top': dropTop,
+                'left': dropLeft,
+            });
+            
+            dragActivo.draggable({
+                revert: false,
+            });
+
+            if(dragSelect == dropCorrespondiente){
+                //Evaluar si el lugar tiene un elemento colocado
+                if(!dragActivo.hasClass('colocado')){
+                    dragActivo.addClass('colocado');
+                    dragColocados++;
+                }      
+
+                dragActivo.addClass('correcto');
+                puntos++;
+                // console.log(`Colocados: ${dragColocados}`);
+                // console.log(`Puntos: ${puntos}`);                   
+            }else{
+                //Evaluar si el lugar tiene un elemento colocado
+                if(!dragActivo.hasClass('colocado')){
+                    dragActivo.addClass('colocado');
+                    dragColocados++;
+                    // console.log(`Colocados: ${dragColocados}`);
+                }
+                else if(dragActivo.hasClass('correcto')){
+                    dragActivo.removeClass('correcto');
+                    puntos--;
+                    // console.log(`Puntos: ${puntos}`);
+                }
+            }
+
+            if(dragColocados === 4){
+                if(puntos === 4){
+                    aciertos++;
+                    // console.log(`Aciertos: ${aciertos}`);
+                }
+                ejercicio2();
+            }
+        }
+
+        function ejercicio2(){
+            animacionSalida(fondoEjercicio1, 'default', 1);
+            animacionSalida(drag1, 'default', 1);
+            animacionSalida(drag2, 'default', 1);
+            animacionSalida(drag3, 'default', 1);
+            animacionSalida(drag4, 'default', 1);
+            animacionSalida(drop1, 'default', 1);
+            animacionSalida(drop2, 'default', 1);
+            animacionSalida(drop3, 'default', 1);
+            animacionSalida(drop4, 'default', 1);
+
+            animacionEntrada(fondoEjercicio2, 'default', 1, 1);
+            animacionEntrada(pregunta1, 'default', 1, 1);
+            animacionEntrada(verdadero1, 'derecha-izquierda', 1, 1.5);
+            animacionEntrada(falso1, 'derecha-izquierda', 1, 2);
+        }
+
+        function question2(){
+            animacionEntrada(pregunta2, 'derecha-izquierda', 1, 1);
+            animacionEntrada(verdadero2, 'derecha-izquierda', 1, 1.5);
+            animacionEntrada(falso2, 'derecha-izquierda', 1, 2);
+        }
+
+        function question3(){
+            animacionEntrada(pregunta3, 'derecha-izquierda', 1,1);
+            animacionEntrada(verdadero3, 'derecha-izquierda', 1, 1.5);
+            animacionEntrada(falso3, 'derecha-izquierda', 1, 2);
+        }
+
+        function question4(){
+            animacionEntrada(pregunta4, 'derecha-izquierda', 1,1);
+            animacionEntrada(verdadero4, 'derecha-izquierda', 1, 1.5);
+            animacionEntrada(falso4, 'derecha-izquierda', 1, 2);
+        }
+
+        function evaluacion(){
+            const calificacion = ((aciertos * 100) / 5).toFixed();
+
+            if(calificacion >= 80){
+                retroalimentacionBuena(calificacion);
+
+            }else if(calificacion < 80){
+                retroalimentacionMala(calificacion);
+            }
+            
+            aplicacion.guardarCalificacion(calificacion);
+        }
+
+        function retroalimentacionBuena(calificacion){
+            animacionSalida(fondoEjercicio2, 'default', 1);
+
+            setTimeout(() => {
+                const p = $('#calificacion');
+
+                p.html(`${calificacion}`);
+                p.css({
+                    'fontSize': '32px',
+                    'top': '397px',
+                    'left': '740px'
+                });
+
+                aplicacion.reproducirAudio(audio[1], finalPagina, 1);
+                animacionEntrada(p, 'default', 1, 1);
+                animacionEntrada(retroBuena, 'default', 1, 1);
+            }, 1000);
+        }
+        function retroalimentacionMala(calificacion){
+            animacionSalida(fondoEjercicio2, 'default', 1);
+
+            setTimeout(() => {
+                const p = $('#calificacion');
+
+                p.html(`${calificacion}`);
+                p.css({
+                    'fontSize': '32px',
+                    'top': '173px',
+                    'left': '700px'
+                });
+
+                aplicacion.reproducirAudio(audio[2], clickReintentar, 1);
+                animacionEntrada(p, 'default', 1, 1);
+                animacionEntrada(retroMala, 'default', 1, 1);
+            }, 1000);
+        }
+
+        function clickReintentar(){
+            parpadear(btnReiniciar)
+        }
+
+        function finalPagina(){
+            aplicacion.terminaPantalla();
+        }
+
+
+        btnComenzar.click(function(){
+            if(btnComenzar.css('cursor') == 'pointer'){
+                dejarParpadear(btnComenzar);
+                animacionSalida(fondoComenzar, 'default', 1);
+                animacionSalida(btnComenzar, 'default', 1);
+
+                setTimeout(() => {
+                    ejercicio1();
+                }, 1000);
+            }
+        });
+
+         // Pregunta 1
+         verdadero1.click(function(){
+            if(verdadero1.css('cursor') == 'pointer'){
+                aciertos++;
+                // console.log(`Aciertos: ${aciertos}`);
+                animacionSalida(pregunta1, 'default', 1, 1);
+                animacionSalida(verdadero1, 'default', 1, 1);
+                animacionSalida(falso1, 'default', 1, 1);
+
+                setTimeout(() => {
+                    question2();
+                }, 1000);
+            }
+        });
+        falso1.click(function(){
+            if(falso1.css('cursor') == 'pointer'){
+                animacionSalida(pregunta1, 'default', 1, 1);
+                animacionSalida(verdadero1, 'default', 1, 1);
+                animacionSalida(falso1, 'default', 1, 1);
+
+                setTimeout(() => {
+                    question2();
+                }, 1000);
+            }
+        });
+
+        // Pregunta 2
+        verdadero2.click(function(){
+            if(verdadero2.css('cursor') == 'pointer'){
+                aciertos++;
+                // console.log(`Aciertos: ${aciertos}`);
+                animacionSalida(pregunta2, 'default', 1, 1);
+                animacionSalida(verdadero2, 'default', 1, 1);
+                animacionSalida(falso2, 'default', 1, 1);
+
+                setTimeout(() => {
+                    question3();
+                }, 1000);
+            }
+        });
+        falso2.click(function(){
+            if(falso2.css('cursor') == 'pointer'){
+                animacionSalida(pregunta2, 'default', 1, 1);
+                animacionSalida(verdadero2, 'default', 1, 1);
+                animacionSalida(falso2, 'default', 1, 1);
+
+                setTimeout(() => {
+                    question3();
+                }, 1000);
+            }
+        });
+
+        // Pregunta 3
+        verdadero3.click(function(){
+            if(verdadero3.css('cursor') == 'pointer'){
+                animacionSalida(pregunta3, 'default', 1, 1);
+                animacionSalida(verdadero3, 'default', 1, 1);
+                animacionSalida(falso3, 'default', 1, 1);
+
+                setTimeout(() => {
+                    question4();
+                }, 1000);
+            }
+        });
+        falso3.click(function(){
+            if(falso3.css('cursor') == 'pointer'){
+                aciertos++;
+                // console.log(`Aciertos: ${aciertos}`);
+                animacionSalida(pregunta3, 'default', 1, 1);
+                animacionSalida(verdadero3, 'default', 1, 1);
+                animacionSalida(falso3, 'default', 1, 1);
+
+                setTimeout(() => {
+                    question4();
+                }, 1000);
+            }
+        });
+
+         // Pregunta 4
+         verdadero4.click(function(){
+            if(verdadero4.css('cursor') == 'pointer'){
+                aciertos++;
+                // console.log(`Aciertos: ${aciertos}`);
+                animacionSalida(pregunta4, 'default', 1, 1);
+                animacionSalida(verdadero4, 'default', 1, 1);
+                animacionSalida(falso4, 'default', 1, 1);
+
+                setTimeout(() => {
+                    evaluacion();
+                }, 1000);
+            }
+        });
+        falso4.click(function(){
+            if(falso4.css('cursor') == 'pointer'){
+                animacionSalida(pregunta4, 'default', 1, 1);
+                animacionSalida(verdadero4, 'default', 1, 1);
+                animacionSalida(falso4, 'default', 1, 1);
+
+                setTimeout(() => {
+                    evaluacion();
+                }, 1000);
+            }
+        });
+
+        btnReiniciar.click(function(){
+            if(btnReiniciar.css('cursor') == 'pointer'){
+                dejarParpadear(btnReiniciar);
+                aplicacion.recargarPagina();
+            }
+        });
+
+
+
+
+    </script>
+</body>
+</html>

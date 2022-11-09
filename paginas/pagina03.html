@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 03</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="texto" src="../img/pagina03/texto.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="d1" src="../img/pagina03/d1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="texto2" src="../img/pagina03/texto2.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="texto3" src="../img/pagina03/texto3.png" data-posX="0" data-posY="0" alt="">
+
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const texto = $('#texto');
+        const texto2 = $('#texto2');
+        const texto3 = $('#texto3');
+        const d1 = $('#d1');
+
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/TMS_OEA_M7_03_1.mp3'),
+            new Audio('../audios/TMS_OEA_M7_03_2.mp3'),
+            new Audio('../audios/TMS_OEA_M7_03_3.mp3')
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            aplicacion.reproducirAudio(audio[0], dialogo, 1);
+            animacionEntrada(texto, 'default', 1, 1);
+            animacionEntrada(d1, 'default', 1, 1);
+        }
+
+        function dialogo(){
+            aplicacion.reproducirAudio(audio[1], dialogo2, 1);
+            animacionEntrada(texto2, 'default', 1, 1);
+        }
+
+        function dialogo2(){
+            aplicacion.reproducirAudio(audio[2], finalPagina, 1);
+            animacionEntrada(texto3, 'default', 1, 1);
+        }
+
+        function finalPagina(){
+            aplicacion.terminaPantalla();
+        }
+
+    </script>
+</body>
+</html>

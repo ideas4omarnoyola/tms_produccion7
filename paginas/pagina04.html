@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 04</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="../css/estilos.css">
+
+    <!-- Librerias -->
+    <script src="../js/librerias/jquery.min.js"></script>
+    <script src="../js/librerias/gsap.min.js"></script>
+
+    <!-- Script de animaciones -->
+    <script src="../js/animaciones.js"></script>
+    <!-- Scripts posicionar elementos -->
+    <script src="../js/redimensionarElementos.js"></script>
+    <script src="../js/posicionar.js"></script>
+
+</head>
+<body class="pagina">
+    <img class="elementos" id="texto" src="../img/pagina04/texto.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="d1" src="../img/pagina04/d1.png" data-posX="0" data-posY="0" alt="">
+    <img class="elementos" id="d2" src="../img/pagina04/d2.png" data-posX="0" data-posY="0" alt="">
+
+
+    <!-- Script de la página -->
+    <script>
+
+        // Variable----------------------------------------------------
+        let aplicacion = parent;
+
+        const texto = $('#texto');
+        const d1 = $('#d1');
+        const d2 = $('#d2');
+
+        const dialogos = [d1, d2];
+
+        let indexDialogo = 0;
+        // Audios------------------------------------------------------
+        const audio = [
+            new Audio('../audios/TMS_OEA_M7_04_1.mp3'),
+            new Audio('../audios/TMS_OEA_M7_04_2.mp3')
+        ]
+
+        // Al cargarse la página
+        $(window).on("load", function(){
+            redimensionarElementos();
+            aplicacion.cargando(iniciarContenido);
+        });
+
+        function iniciarContenido(){
+            animacionEntrada(texto, 'default', 1);
+            aparecerDialogo();
+        }
+
+        function aparecerDialogo() {  
+            aplicacion.reproducirAudio(audio[indexDialogo], siguienteDialogo, 1);
+            animacionEntrada(dialogos[indexDialogo], 'default', 1, 1);
+        }
+
+        function siguienteDialogo(){
+
+            indexDialogo++;
+
+            if(indexDialogo < dialogos.length){
+                animacionSalida(dialogos[indexDialogo - 1], 'default', 1);
+                aparecerDialogo();
+            }
+            else{
+                aplicacion.terminaPantalla();
+            }
+        }
+
+    </script>
+</body>
+</html>
